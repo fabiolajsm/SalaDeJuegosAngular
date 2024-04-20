@@ -1,14 +1,9 @@
-<h1>Home page</h1>
+<div class="container">
+  <h1 class="title">Practiquita - Sala de juegos</h1>
+  <div class="button-container">
+    <button name="login" type="button" class="button">Entrar</button>
+    <button name="register" type="button" class="button">Registrarme</button>
+  </div>
 
-@if (authService.currentUserSig() == null){
-<div>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
+  <router-outlet></router-outlet>
 </div>
-} @if (authService.currentUserSig()){
-<div>
-  <span (click)="logout()">Logout</span>
-</div>
-}
-
-<router-outlet></router-outlet>

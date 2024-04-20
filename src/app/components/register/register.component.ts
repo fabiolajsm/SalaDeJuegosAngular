@@ -7,14 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterOutlet],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  styleUrl: '../onboarding.css',
 })
 export class RegisterComponent {
   fb = inject(FormBuilder);

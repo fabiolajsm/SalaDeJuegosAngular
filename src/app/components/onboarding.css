@@ -1,0 +1,82 @@
+::ng-deep body {
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+  font-family: "Unbounded", sans-serif;
+}
+
+label,
+p,
+a {
+  color: white;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 400;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid white;
+  border-radius: 20px;
+  background-color: white;
+  color: #1c1c1c;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #f4f47c;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-weight: 500;
+}
+
+button[type="submit"]:hover {
+  background-color: #e0e05e;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.register-text {
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.register-link {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
