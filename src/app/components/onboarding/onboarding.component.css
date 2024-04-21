@@ -1,0 +1,46 @@
+::ng-deep body {
+    background-color: black;
+    background-image: url("../../../assets/background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .title {
+    color: white;
+    font-family: "Unbounded", sans-serif;
+    margin-bottom: 2rem;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .button {
+    background-color: #f4f47c;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "Roboto";
+    font-weight: 500;
+  }
+  
+  .button:hover {
+    background-color: #e0e05e;
+  }
+  
