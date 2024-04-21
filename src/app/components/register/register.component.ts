@@ -7,14 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
-  styleUrl: '../onboarding.css',
+  styleUrl: '../onboardingForms.css',
 })
 export class RegisterComponent {
   fb = inject(FormBuilder);
@@ -35,7 +35,7 @@ export class RegisterComponent {
       .register(rawForm.email, rawForm.username, rawForm.password)
       .subscribe({
         next: () => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/home');
         },
         error: (err) => {
           this.errorMessage = err.code;

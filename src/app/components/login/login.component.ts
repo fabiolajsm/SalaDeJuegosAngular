@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: '../onboarding.css',
+  styleUrl: '../onboardingForms.css',
 })
 export class LoginComponent {
   fb = inject(FormBuilder);
@@ -28,7 +28,7 @@ export class LoginComponent {
     const rawForm = this.form.getRawValue();
     this.authService.login(rawForm.email, rawForm.password).subscribe({
       next: () => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/home');
       },
       error: (err) => {
         this.errorMessage = err.code;

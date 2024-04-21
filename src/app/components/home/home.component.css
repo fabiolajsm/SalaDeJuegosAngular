@@ -1,0 +1,16 @@
+.centered-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .centered-content p,
+  .centered-content a {
+    margin: 0;
+  }
+  
+  .centered-content a {
+    margin-left: 0.5rem; /* Ajusta el margen izquierdo según lo necesites */
+  }
+  
