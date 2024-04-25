@@ -1,1 +1,29 @@
-<p>about-me works!</p>
+<!-- about-me.component.html -->
+<div class="container">
+  <h1 class="title">Acerca de mí</h1>
+  <div class="content">
+    <img
+      src="../../../assets/profilePic.jpg"
+      alt="Foto de perfil"
+      class="profile-image"
+    />
+    <div class="info">
+      <ul>
+        <li><strong>Nombre Completo:</strong></li>
+        <li class="infoValue">Fabiola Suárez</li>
+        <li><strong>Email:</strong></li>
+        <li class="infoValue">{{ email }}</li>
+        <li>
+          <strong>LinkedIn:</strong>
+        </li>
+        <li class="infoValue">
+          <a href="https://www.linkedin.com/in/fabiolajsm/" target="_blank"
+            >fabiolajsm</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <p class="description" [innerHTML]="description"></p>
+  <button class="btn" (click)="goToHome()">Volver al home</button>
+</div>

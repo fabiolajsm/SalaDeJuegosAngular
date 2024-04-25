@@ -1,0 +1,106 @@
+::ng-deep body {
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "Roboto";
+}
+
+.title {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  font-family: "Unbounded", sans-serif;
+  color: white;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  border: 3px solid #f4f47c;
+}
+
+.profile-image:hover {
+  transform: scale(1.1);
+}
+
+.info {
+  text-align: left;
+  color: white;
+  margin-left: 1rem;
+}
+.info ul {
+  list-style-type: none;
+  padding: 0;
+}
+.info a {
+  color: white;
+}
+.infoValue {
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  border: 1px solid transparent;
+}
+.infoValue:hover {
+  transform: scale(1.1);
+  border-color: #f4f47c;
+}
+
+.description {
+  max-width: 500px;
+  color: white;
+  text-align: center;
+  font-family: "Roboto";
+}
+
+.btn {
+  margin-top: 2rem;
+  padding: 10px 20px;
+  background-color: #f4f47c;
+  color: black;
+  font-family: "Roboto";
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e0e05e;
+}
+
+/* Media query para mobile */
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-image {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .info {
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+    border-bottom: 4px solid #f4f47c;
+  }
+  .infoValue a {
+    margin-bottom: 2rem;
+  }
+}
