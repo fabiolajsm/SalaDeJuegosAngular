@@ -22,7 +22,7 @@ export class LoginComponent {
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   errorMessage: string | null = null;
@@ -50,6 +50,20 @@ export class LoginComponent {
     });
   }
   handleQuickAccess(): void {
-    console.log('holaa');
+    const quickAccessUsers = ['agua@gmail.com', 'fuego@gmail.com'];
+    const emailSelected =
+      quickAccessUsers[Math.floor(Math.random() * quickAccessUsers.length)];
+    this.getQuickAccessUsers(emailSelected);
+  }
+
+  getQuickAccessUsers(email: string) {
+    this.authService.getUsers().subscribe((userData) => {
+      userData.forEach((usuario) => {
+        if ((usuario as any).email == email) {
+          this.form.controls['email'].setValue((usuario as any).email);
+          this.form.controls['password'].setValue((usuario as any).password);
+        }
+      });
+    });
   }
 }

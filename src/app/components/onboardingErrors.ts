@@ -48,4 +48,12 @@ export const authErrors = [
     code: 'auth/invalid-credential',
     message: 'Usuario y/o contraseña erronea',
   },
+  {
+    code: 'auth/missing-password',
+    message: 'Debe ingresar una contraseña',
+  },
+  {
+    code: 'auth/wrong-password',
+    message: 'Usuario y/o contraseña erronea',
+  },
 ];

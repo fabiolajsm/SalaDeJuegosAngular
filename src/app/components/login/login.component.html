@@ -5,9 +5,6 @@
 }
 
 <form [formGroup]="form" (ngSubmit)="handleSubmit()">
-  <label for="username">Username</label>
-  <input type="text" placeholder="terrenator" formControlName="username" />
-
   <label for="email">Email</label>
   <input
     type="text"
@@ -25,7 +22,6 @@
 
   <button type="submit" name="submit">Entrar</button>
   <button
-    disabled="true"
     class="quickAccessBtn"
     type="button"
     name="quickAccess"

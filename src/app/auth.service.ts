@@ -9,12 +9,15 @@ import {
 } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 import { UserInterface } from './user.interface';
+import { collection } from 'firebase/firestore';
+import { Firestore, collectionData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   firebaseAuth = inject(Auth);
+  firestore = inject(Firestore);
   user$ = user(this.firebaseAuth);
   currentUserSig = signal<UserInterface | null | undefined>(undefined);
 
@@ -45,5 +48,10 @@ export class AuthService {
   logout(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
     return from(promise);
+  }
+
+  getUsers(): Observable<[]> {
+    const users = collection(this.firestore, 'users');
+    return collectionData(users) as Observable<[]>;
   }
 }
