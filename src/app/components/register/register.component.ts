@@ -10,15 +10,17 @@ import { AuthService } from '../../auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { authErrors } from '../onboardingErrors';
 import { FirebaseError } from 'firebase/app';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NgxSpinnerModule],
   templateUrl: './register.component.html',
   styleUrl: '../onboardingForms.css',
 })
 export class RegisterComponent {
+  constructor(private spinner: NgxSpinnerService) {}
   fb = inject(FormBuilder);
   http = inject(HttpClient);
   authService = inject(AuthService);
@@ -32,15 +34,18 @@ export class RegisterComponent {
   errorMessage: string | null = null;
 
   handleSubmit(): void {
+    this.errorMessage = null;
     const rawForm = this.form.getRawValue();
     if (!rawForm.email || !rawForm.password || !rawForm.username) {
       this.errorMessage = 'Debe completar todos los campos';
       return;
     }
+    this.spinner.show();
     this.authService
       .register(rawForm.email, rawForm.username, rawForm.password)
       .subscribe({
         next: () => {
+          this.spinner.hide();
           this.router.navigateByUrl('/home');
         },
         error: (err: FirebaseError) => {
@@ -52,6 +57,7 @@ export class RegisterComponent {
             }
           }
           this.errorMessage = errorMessage;
+          this.spinner.hide();
         },
       });
   }

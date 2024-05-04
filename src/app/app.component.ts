@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -9,10 +9,8 @@ import { AuthService } from './auth.service';
   imports: [CommonModule, RouterModule],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  // implements OnInit
+export class AppComponent implements OnInit {
   authService = inject(AuthService);
-  // cambiar y poner en el home
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
       if (user) {

@@ -5,20 +5,21 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { FirebaseError } from 'firebase/app';
 import { authErrors } from '../onboardingErrors';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NgxSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: '../onboardingForms.css',
 })
 export class LoginComponent {
+  constructor(private spinner: NgxSpinnerService) {}
   fb = inject(FormBuilder);
   http = inject(HttpClient);
   authService = inject(AuthService);
   router = inject(Router);
-
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -28,13 +29,16 @@ export class LoginComponent {
   errorMessage: string | null = null;
 
   handleSubmit(): void {
+    this.errorMessage = null;
     const rawForm = this.form.getRawValue();
     if (!rawForm.email || !rawForm.password) {
       this.errorMessage = 'Debe completar todos los campos';
       return;
     }
+    this.spinner.show();
     this.authService.login(rawForm.email, rawForm.password).subscribe({
       next: () => {
+        this.spinner.hide();
         this.router.navigateByUrl('/home');
       },
       error: (err: FirebaseError) => {
@@ -46,10 +50,12 @@ export class LoginComponent {
           }
         }
         this.errorMessage = errorMessage;
+        this.spinner.hide();
       },
     });
   }
   handleQuickAccess(): void {
+    this.spinner.show();
     const quickAccessUsers = ['agua@gmail.com', 'fuego@gmail.com'];
     const emailSelected =
       quickAccessUsers[Math.floor(Math.random() * quickAccessUsers.length)];
@@ -62,6 +68,7 @@ export class LoginComponent {
         if ((usuario as any).email == email) {
           this.form.controls['email'].setValue((usuario as any).email);
           this.form.controls['password'].setValue((usuario as any).password);
+          this.spinner.hide();
         }
       });
     });
