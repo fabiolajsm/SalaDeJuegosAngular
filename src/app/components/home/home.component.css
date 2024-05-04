@@ -1,16 +1,118 @@
-.centered-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+::ng-deep body {
+  background-color: black;
+}
+
+#title {
+  text-align: center;
+  font-family: "Unbounded", sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer p,
+.footer a {
+  margin: 0;
+  color: white;
+}
+
+.footer a {
+  margin-left: 0.5rem;
+}
+
+.footer a:hover {
+  color: #f4f47c;
+}
+
+.games-list {
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-image {
+  max-width: 300px;
+  height: auto;
+}
+
+.game-item {
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
+.game-item:hover {
+  border: none;
+  border-radius: 20px;
+  background-color: #f4f47c; /* Cambia el color de fondo al pasar el mouse */
+  transition: background-color 0.3s ease; /* Agrega una transición suave */
+  p {
+    color: black;
   }
-  
-  .centered-content p,
-  .centered-content a {
-    margin: 0;
+}
+
+.info-container {
+  flex: 1;
+  padding-right: 10px; /* Espacio entre la información y la imagen */
+  display: flex;
+  flex-direction: column;
+  /* text */
+  color: #f4f47c;
+  font-weight: 500;
+  font-family: "Unbounded", sans-serif;
+}
+
+.infoNumber {
+  font-size: 1rem;
+}
+
+.infoTitle {
+  font-size: 1.5rem;
+}
+
+.infoDescription {
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Roboto";
+}
+
+.info-container.right-align {
+  align-items: end;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 576px) {
+  .games-list {
+    max-width: 100%; /* Ancho máximo del ul para pantallas pequeñas */
+    margin: 0 auto;
   }
-  
-  .centered-content a {
-    margin-left: 0.5rem; /* Ajusta el margen izquierdo según lo necesites */
+
+  .game-item {
+    flex-direction: column; /* Cambia la dirección del flexbox para apilar los elementos en pantallas pequeñas */
   }
-  
+
+  .info-container {
+    padding-right: 0; /* Elimina el espaciado entre la información y la imagen para pantallas pequeñas */
+  }
+
+  .footer {
+    flex-direction: column; /* Cambia la dirección del flexbox para apilar los elementos del pie de página en pantallas pequeñas */
+  }
+
+  .footer p,
+  .footer a {
+    margin: 0.5rem 0; /* Añade margen vertical entre los elementos del pie de página para pantallas pequeñas */
+  }
+}
