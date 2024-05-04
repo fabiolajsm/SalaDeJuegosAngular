@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { authErrors } from '../onboardingErrors';
+import { FirebaseError } from 'firebase/app';
 
 @Component({
   selector: 'app-register',
@@ -31,14 +33,25 @@ export class RegisterComponent {
 
   handleSubmit(): void {
     const rawForm = this.form.getRawValue();
+    if (!rawForm.email || !rawForm.password || !rawForm.username) {
+      this.errorMessage = 'Debe completar todos los campos';
+      return;
+    }
     this.authService
       .register(rawForm.email, rawForm.username, rawForm.password)
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/home');
         },
-        error: (err) => {
-          this.errorMessage = err.code;
+        error: (err: FirebaseError) => {
+          let errorMessage = 'Se produjo un error desconocido.';
+          for (const error of authErrors) {
+            if (error.code === err.code) {
+              errorMessage = error.message;
+              break;
+            }
+          }
+          this.errorMessage = errorMessage;
         },
       });
   }

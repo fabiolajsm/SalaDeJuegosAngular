@@ -5,6 +5,9 @@
 }
 
 <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <label for="username">Username</label>
+  <input type="text" placeholder="terrenator" formControlName="username" />
+
   <label for="email">Email</label>
   <input
     type="text"
@@ -12,11 +15,9 @@
     formControlName="email"
   />
 
-  <label for="username">Username</label>
-  <input type="text" placeholder="terrenator" formControlName="username" />
-
   <label for="password">Contraseña</label>
   <input
+    autocomplete="true"
     type="password"
     placeholder="unacontraseñasegura"
     formControlName="password"
@@ -29,4 +30,3 @@
   <p class="register-text">Ya tengo una cuenta</p>
   <a routerLink="/login" class="register-link">Iniciar sesión</a>
 </div>
-

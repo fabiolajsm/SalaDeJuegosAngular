@@ -5,6 +5,9 @@
 }
 
 <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <label for="username">Username</label>
+  <input type="text" placeholder="terrenator" formControlName="username" />
+
   <label for="email">Email</label>
   <input
     type="text"
@@ -14,16 +17,25 @@
 
   <label for="password">Contraseña</label>
   <input
+    autocomplete="true"
     type="password"
     placeholder="tu contraseña"
     formControlName="password"
   />
 
-  <button type="submit">Entrar</button>
+  <button type="submit" name="submit">Entrar</button>
+  <button
+    disabled="true"
+    class="quickAccessBtn"
+    type="button"
+    name="quickAccess"
+    (click)="handleQuickAccess()"
+  >
+    Acceso rápido
+  </button>
 </form>
 
 <div>
   <p class="register-text">No tengo una cuenta</p>
   <a routerLink="/register" class="register-link">Registrarme</a>
 </div>
-

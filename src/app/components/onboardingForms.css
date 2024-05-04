@@ -61,6 +61,21 @@ button[type="submit"]:hover {
   background-color: #e0e05e;
 }
 
+.quickAccessBtn {
+  background-color: transparent;
+  border: none;
+  color: #e0e05e;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.quickAccessBtn:hover {
+  color: white;
+}
+
 .error-message {
   color: red;
   margin-top: 10px;
