@@ -1,4 +1,7 @@
-<button (click)="handleLogout()" name="logout" type="button">Logout</button>
+<mat-icon id="logoutBtn" (click)="handleLogout()" name="logout">
+  <span class="material-symbols-outlined"> logout </span>
+</mat-icon>
+
 <h1 id="title">{{ title }}</h1>
 
 <ul class="games-list">
@@ -9,10 +12,10 @@
         <p class="infoTitle">{{ item.title }}</p>
         <p class="infoDescription">{{ item.description }}</p>
       </div>
-      <img src="{{ item.img }}" alt="Foto de perfil" class="profile-image" />
+      <img src="{{ item.img }}" alt="Foto de perfil" class="game-image" />
     </li>
     <li class="game-item" *ngIf="i % 2 !== 0">
-      <img src="{{ item.img }}" alt="Foto de perfil" class="profile-image" />
+      <img src="{{ item.img }}" alt="Foto del juego" class="game-image" />
       <div class="info-container right-align">
         <p class="infoNumber">{{ item.number }}</p>
         <p class="infoTitle">{{ item.title }}</p>

@@ -3,6 +3,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface GamesList {
   number: string;
@@ -13,7 +15,7 @@ export interface GamesList {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatGridListModule],
+  imports: [CommonModule, RouterLink, MatGridListModule, MatButtonModule, MatIconModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -33,19 +35,19 @@ export class HomeComponent {
       number: '02',
       title: 'Mayor o Menor',
       description: 'Una descripcion',
-      img: '../../../assets/HangInThere.jpeg',
+      img: '../../../assets/MayorMenor.jpeg',
     },
     {
       number: '03',
       title: 'Preguntados',
       description: 'Una descripcion',
-      img: '../../../assets/HangInThere.jpeg',
+      img: '../../../assets/Preguntados.jpeg',
     },
     {
       number: '04',
       title: 'Elementos',
       description: 'Una descripcion',
-      img: '../../../assets/HangInThere.jpeg',
+      img: '../../../assets/Elementos.jpeg',
     },
   ];
 

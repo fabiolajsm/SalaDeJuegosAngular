@@ -1,7 +1,12 @@
-::ng-deep body {
-  background-color: black;
+#logoutBtn {
+  color: #f4f47c;
+  margin-left: auto;
+  display: block;
+  cursor: pointer;
 }
-
+#logoutBtn:hover {
+  color: white;
+}
 #title {
   text-align: center;
   font-family: "Unbounded", sans-serif;
@@ -39,7 +44,7 @@
   margin: 0 auto;
 }
 
-.profile-image {
+.game-image {
   max-width: 300px;
   height: auto;
 }
@@ -55,8 +60,9 @@
 .game-item:hover {
   border: none;
   border-radius: 20px;
-  background-color: #f4f47c; /* Cambia el color de fondo al pasar el mouse */
-  transition: background-color 0.3s ease; /* Agrega una transición suave */
+  background-color: #f4f47c;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
   p {
     color: black;
   }
@@ -64,7 +70,7 @@
 
 .info-container {
   flex: 1;
-  padding-right: 10px; /* Espacio entre la información y la imagen */
+  padding-right: 10px;
   display: flex;
   flex-direction: column;
   /* text */
@@ -95,24 +101,27 @@
 /* Estilos para pantallas pequeñas */
 @media screen and (max-width: 576px) {
   .games-list {
-    max-width: 100%; /* Ancho máximo del ul para pantallas pequeñas */
+    max-width: 100%;
     margin: 0 auto;
   }
 
   .game-item {
-    flex-direction: column; /* Cambia la dirección del flexbox para apilar los elementos en pantallas pequeñas */
+    flex-direction: column;
+  }
+  .game-item:nth-child(even) .info-container {
+    order: 1;
   }
 
   .info-container {
-    padding-right: 0; /* Elimina el espaciado entre la información y la imagen para pantallas pequeñas */
+    padding-right: 0;
   }
 
   .footer {
-    flex-direction: column; /* Cambia la dirección del flexbox para apilar los elementos del pie de página en pantallas pequeñas */
+    flex-direction: column;
   }
 
   .footer p,
   .footer a {
-    margin: 0.5rem 0; /* Añade margen vertical entre los elementos del pie de página para pantallas pequeñas */
+    margin: 0.5rem 0;
   }
 }
