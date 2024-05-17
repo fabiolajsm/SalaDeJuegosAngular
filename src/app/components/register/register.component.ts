@@ -47,6 +47,7 @@ export class RegisterComponent {
         next: () => {
           this.spinner.hide();
           this.router.navigateByUrl('/home');
+          this.authService.addToLoginHistory(rawForm.email);
         },
         error: (err: FirebaseError) => {
           let errorMessage = 'Se produjo un error desconocido.';

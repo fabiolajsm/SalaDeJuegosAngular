@@ -9,7 +9,7 @@ import {
 } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 import { UserInterface } from './user.interface';
-import { collection } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { Firestore, collectionData } from '@angular/fire/firestore';
 
 @Injectable({
@@ -53,5 +53,10 @@ export class AuthService {
   getUsers(): Observable<[]> {
     const users = collection(this.firestore, 'users');
     return collectionData(users) as Observable<[]>;
+  }
+
+  addToLoginHistory(email: string) {
+    const loginHistory = collection(this.firestore, 'loginHistory');
+    addDoc(loginHistory, { email: email, date: new Date() });
   }
 }
