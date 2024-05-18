@@ -111,9 +111,6 @@ button {
   font-family: "Roboto";
 }
 
-.info-container.right-align {
-  align-items: end;
-}
 
 /* Estilos para pantallas pequeñas */
 @media screen and (max-width: 576px) {
@@ -124,9 +121,6 @@ button {
 
   .game-item {
     flex-direction: column;
-  }
-  .game-item:nth-child(even) .info-container {
-    order: 1;
   }
 
   .info-container {
