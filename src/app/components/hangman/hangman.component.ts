@@ -1,10 +1,11 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HangmanService } from '../../../services/hangman.service';
 import { HangmanDisplayComponent } from '../hangman-display/hangman-display.component';
 import { HangmanKeyboardComponent } from '../hangman-keyboard/hangman-keyboard.component';
 import { HangmanQuestionComponent } from '../hangman-question/hangman-question.component';
 import { Router } from '@angular/router';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-hangman',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
     HangmanKeyboardComponent,
     HangmanQuestionComponent,
     CommonModule,
+    NgxSpinnerModule,
   ],
   templateUrl: './hangman.component.html',
   styleUrls: ['./hangman.component.scss'],
@@ -24,24 +26,22 @@ export class HangmanComponent implements OnInit {
   guesses: string[] = [];
   category: string = '';
   restartGameBtnShown = false;
-  wordContext: string = 'Series';
 
   constructor(
     private hangmanService: HangmanService,
-    private location: Location,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
-    let jsonPath;
-    const url = this.location.path();
-    if (url.includes('jsonPath')) {
-      jsonPath = url.split('jsonPath=')[1];
-    }
-    this.hangmanService.getQuestions(jsonPath).subscribe((response) => {
-      this.questions = response.items;
-      this.category = response.category;
+    this.spinner.show();
+    this.hangmanService.getCategoriesAndQuestions().subscribe((categories) => {
+      const category =
+        categories[Math.floor(Math.random() * categories.length)];
+      this.category = category.category.toUpperCase();
+      this.questions = category.values;
       this.pickNewQuestion();
+      this.spinner.hide();
     });
   }
 
@@ -66,7 +66,6 @@ export class HangmanComponent implements OnInit {
   pickNewQuestion() {
     const randomIndex = Math.floor(Math.random() * this.questions.length);
     this.question = this.questions[randomIndex];
-    console.log(this.question);
   }
 
   onGameFinished() {

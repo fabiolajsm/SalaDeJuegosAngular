@@ -1,3 +1,12 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#f4f47c"
+  type="pacman"
+  [fullScreen]="true"
+  ><p style="color: #f4f47c; font-family: Roboto">Cargando</p>
+</ngx-spinner>
+
 <div class="hangman">
   <h1 class="title">Adivina la palabra!</h1>
   <p class="description">
@@ -7,7 +16,7 @@
     propongas una letra y no esté en la palabra, ¡perderás un intento! Pero no
     te preocupes, con cada intento aprenderás más sobre la palabra oculta.
   </p>
-  <h4 class="wordContext">Contexto elegido: {{ wordContext }}</h4>
+  <h4 class="category">Categoría elegida: {{ category }}</h4>
   <app-hangman-display
     (gameFinished)="onGameFinished()"
     [guesses]="guesses"

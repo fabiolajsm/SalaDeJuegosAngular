@@ -1,15 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-
-const defaultJSONPath = 'assets/languages.json';
+import { Injectable, inject } from '@angular/core';
+import { Firestore, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { collection, query } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HangmanService {
-  constructor(private http: HttpClient) {}
+  firestore = inject(Firestore);
 
-  getQuestions(jsonPath: string = defaultJSONPath) {
-    return this.http.get<{ category: string; items: string[] }>(jsonPath);
+  getCategoriesAndQuestions(): Observable<any[]> {
+    const questionsRef = collection(this.firestore, 'hangManQuestions');
+    const questionsQuery = query(questionsRef);
+    return collectionData(questionsQuery, { idField: 'id' });
   }
 }
