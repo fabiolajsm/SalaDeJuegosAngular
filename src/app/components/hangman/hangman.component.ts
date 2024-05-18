@@ -4,6 +4,7 @@ import { HangmanService } from '../../../services/hangman.service';
 import { HangmanDisplayComponent } from '../hangman-display/hangman-display.component';
 import { HangmanKeyboardComponent } from '../hangman-keyboard/hangman-keyboard.component';
 import { HangmanQuestionComponent } from '../hangman-question/hangman-question.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hangman',
@@ -23,9 +24,12 @@ export class HangmanComponent implements OnInit {
   guesses: string[] = [];
   category: string = '';
   restartGameBtnShown = false;
+  wordContext: string = 'Series';
+
   constructor(
     private hangmanService: HangmanService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,5 +71,8 @@ export class HangmanComponent implements OnInit {
 
   onGameFinished() {
     this.restartGameBtnShown = true;
+  }
+  goToHome(): void {
+    this.router.navigate(['/home']);
   }
 }

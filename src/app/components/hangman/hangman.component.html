@@ -1,4 +1,13 @@
 <div class="hangman">
+  <h1 class="title">Adivina la palabra!</h1>
+  <p class="description">
+    En este juego, se pondrán a prueba tus habilidades en series, música y
+    colores. ¿Cómo funciona? Es simple: seleccionamos una palabra o frase
+    secreta, y tienes hasta siete intentos para adivinarla. Cada vez que
+    propongas una letra y no esté en la palabra, ¡perderás un intento! Pero no
+    te preocupes, con cada intento aprenderás más sobre la palabra oculta.
+  </p>
+  <h4 class="wordContext">Contexto elegido: {{ wordContext }}</h4>
   <app-hangman-display
     (gameFinished)="onGameFinished()"
     [guesses]="guesses"
@@ -15,7 +24,10 @@
     ></app-hangman-keyboard>
   </ng-container>
 </div>
+
 <ng-template #restartGameBtn>
   <p>Texto correcto: {{ question }}</p>
   <button class="btn" (click)="reset()">Volver a jugar</button>
 </ng-template>
+
+<button class="btnGoBack" (click)="goToHome()">Volver al home</button>

@@ -43,7 +43,8 @@ export class HomeComponent {
     {
       number: '01',
       title: 'El Ahorcado',
-      description: 'Una descripcion',
+      description:
+        'Adivina la palabra antes de quedarte sin intentos en este emocionante juego de ahorcado para dos o más jugadores.',
       img: '../../../assets/HangInThere.jpeg',
     },
     {
