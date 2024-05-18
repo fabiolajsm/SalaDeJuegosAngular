@@ -6,7 +6,7 @@
 
 <ul class="games-list">
   <ng-container *ngFor="let item of gamesList; let i = index">
-    <li class="game-item">
+    <li class="game-item" (click)="onGameClick(item)">
       <div class="info-container">
         <p class="infoNumber">{{ item.number }}</p>
         <p class="infoTitle">{{ item.title }}</p>

@@ -36,4 +36,36 @@ export const routes: Routes = [
       ),
     title: 'About me',
   },
+  {
+    path: 'hangman',
+    loadComponent: () =>
+      import('./components/hangman/hangman.component').then(
+        (c) => c.HangmanComponent
+      ),
+    title: 'Ahorcado',
+  },
+  {
+    path: 'greater-or-less',
+    loadComponent: () =>
+      import('./components/greater-or-less/greater-or-less.component').then(
+        (c) => c.GreaterOrLessComponent
+      ),
+    title: 'Mayor o Menor',
+  },
+  {
+    path: 'trivia',
+    loadComponent: () =>
+      import('./components/trivia/trivia.component').then(
+        (c) => c.TriviaComponent
+      ),
+    title: 'Preguntados',
+  },
+  {
+    path: 'elements',
+    loadComponent: () =>
+      import('./components/elements/elements.component').then(
+        (c) => c.ElementsComponent
+      ),
+    title: 'Elementos',
+  },
 ];

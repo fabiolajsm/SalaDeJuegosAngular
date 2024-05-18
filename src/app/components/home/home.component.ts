@@ -94,4 +94,23 @@ export class HomeComponent {
   openBottomSheet(): void {
     this._bottomSheet.open(ChatComponent);
   }
+
+  onGameClick(game: GamesList) {
+    switch (game.title) {
+      case 'El Ahorcado':
+        this.router.navigate(['/hangman']);
+        break;
+      case 'Mayor o Menor':
+        this.router.navigate(['/greater-or-less']);
+        break;
+      case 'Preguntados':
+        this.router.navigate(['/trivia']);
+        break;
+      case 'Elementos':
+        this.router.navigate(['/elements']);
+        break;
+      default:
+        break;
+    }
+  }
 }
