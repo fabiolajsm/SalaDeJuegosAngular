@@ -30,7 +30,10 @@ export const routes: Routes = [
   },
   {
     path: 'aboutMe',
-    component: AboutMeComponent,
+    loadComponent: () =>
+      import('./components/about-me/about-me.component').then(
+        (c) => c.AboutMeComponent
+      ),
     title: 'About me',
   },
 ];
