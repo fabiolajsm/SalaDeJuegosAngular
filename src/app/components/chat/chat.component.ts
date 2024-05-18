@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ChatService } from '../../../services/chat.service';
 import { AuthService } from '../../../services/auth.service';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
+import { es } from 'date-fns/locale';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserInterface } from '../../../interfaces/user.interface';
 
@@ -23,29 +24,26 @@ export class ChatComponent {
   authService = inject(AuthService);
   chatService = inject(ChatService);
 
-  currentUserEmailMessage: string = '';
-  replyEmail: string = '';
-  selectedUserName: string = '';
-
+  currentUsername: string = '';
   subsUsers!: Subscription;
   subsChatHistory!: Subscription;
   messages: ChatMessage[] = [];
+  messagesGroupedByDate: { date: string; messages: ChatMessage[] }[] = [];
   users: any[] = [];
-  hasToShowSelector: boolean = true;
-  isUserSelected: boolean = false;
+  prefixUsername: string = '@';
 
   ngOnInit(): void {
     this.subsUsers = this.authService
       .getUsers()
       .subscribe((response: UserInterface[]) => {
         this.users = response.filter(
-          (user) => user.email !== this.currentUserEmailMessage
+          (user) => user.username !== this.currentUsername
         );
       });
 
     this.authService.user$.subscribe((user) => {
-      if (user?.email) {
-        this.currentUserEmailMessage = user.email;
+      if (user?.displayName) {
+        this.currentUsername = user.displayName;
       }
     });
     this.loadMessages();
@@ -61,7 +59,7 @@ export class ChatComponent {
       .getMessages()
       .subscribe((data: ChatMessage[]) => {
         this.messages = data;
-        this.messages.sort(this.orderByDateAndTime);
+        this.groupMessagesByDate();
       });
   }
 
@@ -70,64 +68,58 @@ export class ChatComponent {
 
     if (rawForm.newMessage.length > 0) {
       const newDate = new Date();
-      let date = format(newDate, 'dd MMMM yyyy');
-      let time = format(newDate, 'hh:mm a');
+      const date = format(newDate, 'dd MMMM yyyy');
+      const time = format(newDate, 'hh:mm a');
 
       this.chatService.updateMessages(
-        this.currentUserEmailMessage,
+        this.currentUsername,
         rawForm.newMessage,
         date,
-        time,
-        this.replyEmail
+        time
       );
-
       this.form.reset();
-    }
-  }
-
-  toggleView(name: string) {
-    if (name === 'ver chat') {
       this.loadMessages();
-    } else {
-      this.selectedUserName = '';
     }
-    this.hasToShowSelector = !this.hasToShowSelector;
-    this.isUserSelected = !this.hasToShowSelector;
   }
 
-  selectUser(event: Event) {
-    if (!event) return;
-    const target = event.target as HTMLSelectElement;
-    const selectedEmail = target.value;
-    if (!selectedEmail) return;
-    this.replyEmail = selectedEmail;
-    this.messages = this.messages.filter(
-      (message) =>
-        message.email === this.currentUserEmailMessage ||
-        message.sendTo === this.currentUserEmailMessage ||
-        message.email === selectedEmail ||
-        message.sendTo === selectedEmail
+  orderByDateAndTime(messageA: ChatMessage, messageB: ChatMessage) {
+    const dateA = parse(
+      `${messageA.date} ${messageA.time}`,
+      'dd MMM yyyy hh:mm a',
+      new Date()
     );
-    this.isUserSelected = true;
-    this.authService.getUserName(selectedEmail).subscribe((name) => {
-      this.selectedUserName = name;
-    });
+    const dateB = parse(
+      `${messageB.date} ${messageB.time}`,
+      'dd MMM yyyy hh:mm a',
+      new Date()
+    );
+    return dateA.getTime() - dateB.getTime();
   }
 
-  orderByDateAndTime(messageA: any, messageB: any) {
-    if (messageA.date < messageB.date) {
-      return -1;
-    } else if (messageA.date > messageB.date) {
-      return 1;
-    } else if (messageA.date == messageB.date) {
-      if (messageA.time < messageB.time) {
-        return -1;
+  groupMessagesByDate() {
+    const grouped: { [key: string]: ChatMessage[] } = {};
+
+    for (const message of this.messages) {
+      if (!grouped[message.date]) {
+        grouped[message.date] = [];
       }
-      if (messageA.time > messageB.time) {
-        return 1;
-      }
-      return 0;
+      grouped[message.date].push(message);
     }
-    return 0;
+
+    this.messagesGroupedByDate = Object.keys(grouped)
+      .sort((dateA, dateB) => {
+        const parsedDateA = parse(dateA, 'dd MMMM yyyy', new Date(), {
+          locale: es,
+        });
+        const parsedDateB = parse(dateB, 'dd MMMM yyyy', new Date(), {
+          locale: es,
+        });
+
+        return parsedDateA.getTime() - parsedDateB.getTime();
+      })
+      .map((date) => ({
+        date,
+        messages: grouped[date].sort(this.orderByDateAndTime),
+      }));
   }
 }

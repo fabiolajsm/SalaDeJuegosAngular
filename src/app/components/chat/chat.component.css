@@ -12,7 +12,8 @@
   font-family: "Roboto", sans-serif;
 }
 
-.username {
+#title {
+  font-size: 20px;
   text-align: center;
   font-family: "Unbounded", sans-serif;
 }
@@ -20,23 +21,38 @@
 .messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
-  padding-top: 0;
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
-.message-wrapper {
+.message-container {
+  margin: 10px 0;
+}
+
+.align-start {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 10px;
+}
+
+.align-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.username {
+  margin: 0 0 5px 0;
+  font-weight: bold;
 }
 
 .message-date {
   margin: 0;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
+  color: #999;
+  margin: 10px 0;
 }
 
 .message-bubble {
@@ -46,7 +62,11 @@
   padding: 8px 12px;
   max-width: 80%;
   word-wrap: break-word;
-  margin-top: 10px;
+  margin-top: 2px;
+}
+
+.align-end .message-bubble {
+  background-color: #d3d3d3; 
 }
 
 .message-text {
@@ -60,18 +80,12 @@
   margin-bottom: 0;
 }
 
-.message-date {
-  font-size: 14px;
-  color: #999;
-  margin: 10px 0;
-}
-
 .message-form {
   display: flex;
   align-items: center;
-  padding: 10px;
   background-color: #fefae0;
   border-top: 1px solid #ddd;
+  padding: 10px;
 }
 
 .message-form textarea {

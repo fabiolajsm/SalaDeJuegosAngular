@@ -25,19 +25,12 @@ export class ChatService {
       ChatMessage[]
     >;
   }
-  updateMessages(
-    senderEmail: string,
-    text: string,
-    date: string,
-    time: string,
-    sendTo: string
-  ) {
+  updateMessages(username: string, text: string, date: string, time: string) {
     const newMessage = {
-      senderEmail,
+      username,
       text,
       date,
       time,
-      sendTo,
     };
     const messagesRef: CollectionReference = collection(
       this.firestore,
