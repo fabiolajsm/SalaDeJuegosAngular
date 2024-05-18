@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './greater-or-less.component.html',
-  styleUrl: './greater-or-less.component.css'
+  styleUrl: './greater-or-less.component.scss'
 })
 export class GreaterOrLessComponent {
 

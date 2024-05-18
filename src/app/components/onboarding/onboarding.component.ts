@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './onboarding.component.html',
-  styleUrl: './onboarding.component.css',
+  styleUrl: './onboarding.component.scss',
 })
 export class OnboardingComponent {
   constructor(private router: Router) {}

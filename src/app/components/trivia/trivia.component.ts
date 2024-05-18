@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './trivia.component.html',
-  styleUrl: './trivia.component.css'
+  styleUrl: './trivia.component.scss'
 })
 export class TriviaComponent {
 

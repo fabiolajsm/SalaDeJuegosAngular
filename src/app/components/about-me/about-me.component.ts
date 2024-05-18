@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './about-me.component.html',
-  styleUrl: './about-me.component.css',
+  styleUrl: './about-me.component.scss',
 })
 export class AboutMeComponent {
   constructor(private router: Router) {}

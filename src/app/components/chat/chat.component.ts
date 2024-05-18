@@ -14,7 +14,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, NgxSpinnerModule],
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css',
+  styleUrl: './chat.component.scss',
 })
 export class ChatComponent {
   constructor(private spinner: NgxSpinnerService) {}

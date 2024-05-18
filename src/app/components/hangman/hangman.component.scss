@@ -1,0 +1,25 @@
+.hangman {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 0 auto;
+}
+.btn {
+  background-color: #f4f47c;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Roboto";
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #e0e05e;
+}

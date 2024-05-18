@@ -12,7 +12,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, NgxSpinnerModule],
   templateUrl: './register.component.html',
-  styleUrl: '../onboardingForms.css',
+  styleUrl: '../onboardingForms.scss',
 })
 export class RegisterComponent {
   constructor(private spinner: NgxSpinnerService) {}

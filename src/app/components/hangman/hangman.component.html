@@ -1,1 +1,21 @@
-<p>hangman works!</p>
+<div class="hangman">
+  <app-hangman-display
+    (gameFinished)="onGameFinished()"
+    [guesses]="guesses"
+    [question]="question"
+  ></app-hangman-display>
+  <ng-container *ngIf="!restartGameBtnShown; else restartGameBtn">
+    <app-hangman-question
+      [guesses]="guesses"
+      [question]="question"
+    ></app-hangman-question>
+    <app-hangman-keyboard
+      (keyPressed)="guess($event)"
+      [question]="question"
+    ></app-hangman-keyboard>
+  </ng-container>
+</div>
+<ng-template #restartGameBtn>
+  <p>Texto correcto: {{ question }}</p>
+  <button class="btn" (click)="reset()">Volver a jugar</button>
+</ng-template>
