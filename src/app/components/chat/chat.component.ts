@@ -73,7 +73,7 @@ export class ChatComponent {
   sendMessage() {
     const rawForm = this.form.getRawValue();
 
-    if (rawForm.newMessage.length > 0) {
+    if (rawForm.newMessage.trim().length > 0) {
       const newDate = new Date();
       const date = format(newDate, 'dd MMMM yyyy');
       const time = format(newDate, 'hh:mm a');
