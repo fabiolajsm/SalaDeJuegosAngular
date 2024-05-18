@@ -1,10 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ChatComponent } from '../chat/chat.component';
+import {
+  MatBottomSheet,
+  MatBottomSheetModule,
+} from '@angular/material/bottom-sheet';
 
 export interface GamesList {
   number: string;
@@ -15,11 +20,21 @@ export interface GamesList {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatGridListModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatGridListModule,
+    MatButtonModule,
+    MatIconModule,
+    ChatComponent,
+    MatBottomSheetModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  constructor(private _bottomSheet: MatBottomSheet) {}
+
   authService = inject(AuthService);
   router = inject(Router);
   username: string = '';
@@ -70,9 +85,13 @@ export class HomeComponent {
         this.router.navigateByUrl('/onboarding');
       },
       error: () => {
-        console.log('wtf');
         // TODO
+        console.log('error en logout');
       },
     });
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(ChatComponent);
   }
 }

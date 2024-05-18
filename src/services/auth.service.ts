@@ -8,8 +8,8 @@ import {
   user,
 } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
-import { UserInterface } from './user.interface';
-import { addDoc, collection } from 'firebase/firestore';
+import { UserInterface } from '../interfaces/user.interface';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { Firestore, collectionData } from '@angular/fire/firestore';
 
 @Injectable({
@@ -58,5 +58,18 @@ export class AuthService {
   addToLoginHistory(email: string) {
     const loginHistory = collection(this.firestore, 'loginHistory');
     addDoc(loginHistory, { email: email, date: new Date() });
+  }
+
+  getUserName(email: string): Observable<string> {
+    const usersRef = collection(this.firestore, 'users');
+    const q = query(usersRef, where('email', '==', email));
+    return new Observable<string>((observer) => {
+      getDocs(q).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          observer.next(doc.data()['username']);
+        });
+        observer.complete();
+      });
+    });
   }
 }

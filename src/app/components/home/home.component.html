@@ -29,3 +29,17 @@
   <p>Página creada por</p>
   <a routerLink="/aboutMe">Fabiola Suárez</a>
 </footer>
+
+<div class="chatContainer">
+  <button
+    mat-fab
+    matTooltip="Primary"
+    color="primary"
+    (click)="openBottomSheet()"
+    class="chatBtn"
+  >
+    <mat-icon id="chatBtn" name="chatBtn">
+      <span class="material-symbols-outlined"> comment </span>
+    </mat-icon>
+  </button>
+</div>

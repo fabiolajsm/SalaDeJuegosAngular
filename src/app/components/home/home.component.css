@@ -1,5 +1,17 @@
+.chatContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+button {
+  background-color: black;
+}
+
 #logoutBtn {
   color: #f4f47c;
+  margin-top: auto;
   margin-left: auto;
   display: block;
   cursor: pointer;
@@ -7,6 +19,11 @@
 #logoutBtn:hover {
   color: white;
 }
+
+#chatContainer {
+  margin-left: auto;
+}
+
 #title {
   text-align: center;
   font-family: "Unbounded", sans-serif;

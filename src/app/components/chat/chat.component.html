@@ -1,0 +1,48 @@
+<div class="chat-container">
+  <p *ngIf="!hasToShowSelector" class="username">{{ selectedUserName }}</p>
+
+  <ng-container *ngIf="hasToShowSelector; else chatView">
+    <select (change)="selectUser($event)">
+      <option value="" disabled selected>Selecciona un usuario</option>
+      <option *ngFor="let user of users" [value]="user.email">
+        {{ user.email }}
+      </option>
+    </select>
+    <button [disabled]="!isUserSelected" (click)="toggleView('ver chat')">
+      Ver Chat
+    </button>
+  </ng-container>
+
+  <ng-template #chatView>
+    <div class="messages-container">
+      <ng-container *ngIf="messages.length; else noMessages">
+        <ng-container *ngFor="let message of messages">
+          <p class="message-date">{{ message.date }}</p>
+          <div class="message-wrapper">
+            <div class="message-bubble">
+              <p class="message-text">{{ message.text }}</p>
+              <p class="message-time">{{ message.time }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #noMessages>
+        <p>Aún no hay mensajes.</p>
+      </ng-template>
+    </div>
+    <form class="message-form" [formGroup]="form">
+      <textarea
+        formControlName="newMessage"
+        name="newMessage"
+        rows="1"
+        placeholder="Escribe algo..."
+      ></textarea>
+      <button type="button" (click)="sendMessage()">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </form>
+    <button (click)="toggleView('seleccionar usuario')">
+      Seleccionar Usuario
+    </button>
+  </ng-template>
+</div>
