@@ -1,11 +1,13 @@
 <div class="chat-container">
   <ngx-spinner
     bdColor="rgba(0, 0, 0, 0.8)"
-    size="medium"
+    size="small"
     color="#f4f47c"
-    [fullScreen]="true"
+    type="ball-spin-fade"
+    [fullScreen]="false"
     ><p style="color: #f4f47c; font-family: Roboto">Cargando...</p>
   </ngx-spinner>
+
   <div class="messages-container" *ngIf="!isLoading">
     <h1 id="title">Chatroom sala de juegos</h1>
     <ng-container *ngIf="messagesGroupedByDate.length; else noMessages">
