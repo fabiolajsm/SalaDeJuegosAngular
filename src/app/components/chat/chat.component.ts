@@ -8,15 +8,17 @@ import { format, parse } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserInterface } from '../../../interfaces/user.interface';
-
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgxSpinnerModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
 })
 export class ChatComponent {
+  constructor(private spinner: NgxSpinnerService) {}
+
   fb = inject(FormBuilder);
   form = this.fb.nonNullable.group({
     newMessage: ['', Validators.required],
@@ -27,10 +29,11 @@ export class ChatComponent {
   currentUsername: string = '';
   subsUsers!: Subscription;
   subsChatHistory!: Subscription;
-  messages: ChatMessage[] = [];
+  messages: ChatMessage[] | null = null;
   messagesGroupedByDate: { date: string; messages: ChatMessage[] }[] = [];
   users: any[] = [];
   prefixUsername: string = '@';
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.subsUsers = this.authService
@@ -55,11 +58,15 @@ export class ChatComponent {
   }
 
   loadMessages() {
+    this.isLoading = true;
+    this.spinner.show();
     this.subsChatHistory = this.chatService
       .getMessages()
       .subscribe((data: ChatMessage[]) => {
         this.messages = data;
         this.groupMessagesByDate();
+        this.isLoading = false;
+        this.spinner.hide();
       });
   }
 
@@ -97,6 +104,7 @@ export class ChatComponent {
   }
 
   groupMessagesByDate() {
+    if (this.messages === null) return;
     const grouped: { [key: string]: ChatMessage[] } = {};
 
     for (const message of this.messages) {

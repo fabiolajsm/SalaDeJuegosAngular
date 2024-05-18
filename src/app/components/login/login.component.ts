@@ -57,7 +57,11 @@ export class LoginComponent {
   }
   handleQuickAccess(): void {
     this.spinner.show();
-    const quickAccessUsers = ['agua@gmail.com', 'fuego@gmail.com'];
+    const quickAccessUsers = [
+      'agua@gmail.com',
+      'fuego@gmail.com',
+      'tierra@gmail.com',
+    ];
     const emailSelected =
       quickAccessUsers[Math.floor(Math.random() * quickAccessUsers.length)];
     this.getQuickAccessUsers(emailSelected);

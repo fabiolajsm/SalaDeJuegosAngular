@@ -1,7 +1,13 @@
 <div class="chat-container">
-  <h1 id="title">Chatroom sala de juegos</h1>
-
-  <div class="messages-container">
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#f4f47c"
+    [fullScreen]="true"
+    ><p style="color: #f4f47c; font-family: Roboto">Cargando...</p>
+  </ngx-spinner>
+  <div class="messages-container" *ngIf="!isLoading">
+    <h1 id="title">Chatroom sala de juegos</h1>
     <ng-container *ngIf="messagesGroupedByDate.length; else noMessages">
       <ng-container *ngFor="let group of messagesGroupedByDate">
         <p class="message-date">{{ group.date }}</p>
@@ -37,7 +43,7 @@
     </ng-template>
   </div>
 
-  <form class="message-form" [formGroup]="form">
+  <form class="message-form" [formGroup]="form" *ngIf="!isLoading">
     <textarea
       formControlName="newMessage"
       name="newMessage"
