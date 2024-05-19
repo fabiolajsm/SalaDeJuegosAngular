@@ -5,6 +5,7 @@
   justify-content: center;
   text-align: center;
   color: white;
+  font-family: "Roboto";
 }
 
 #title {
@@ -13,7 +14,6 @@
 }
 
 .description {
-  font-family: "Roboto";
   max-width: 800px;
 }
 
@@ -23,7 +23,6 @@
 
 .question {
   font-size: 20px;
-  font-family: "Unbounded", sans-serif;
   color: #f4f47c;
 }
 
@@ -47,7 +46,6 @@
   padding: 15px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   cursor: pointer;
   border-radius: 10px;
@@ -57,6 +55,17 @@
 .option-button:hover {
   background-color: black;
   color: #f4f47c;
+}
+
+.option-button:disabled {
+  background-color: gray;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.option-button:disabled.selected {
+  background-color: #f4f47c;
+  color: black;
 }
 
 .btn {
@@ -69,7 +78,6 @@
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   cursor: pointer;
 }
@@ -77,6 +85,7 @@
 .btn:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+
 .btn:disabled {
   background-color: gray;
   cursor: not-allowed;

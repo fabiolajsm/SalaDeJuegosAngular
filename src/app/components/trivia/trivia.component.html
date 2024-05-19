@@ -33,6 +33,7 @@
     <div class="row">
       <button
         class="option-button"
+        [class.selected]="selectedOption === questions[currentQuestionIndex].options[0]"
         (click)="selectOption(questions[currentQuestionIndex].options[0])"
         [disabled]="selectedOption !== ''"
       >
@@ -40,6 +41,7 @@
       </button>
       <button
         class="option-button"
+        [class.selected]="selectedOption === questions[currentQuestionIndex].options[1]"
         (click)="selectOption(questions[currentQuestionIndex].options[1])"
         [disabled]="selectedOption !== ''"
       >
@@ -49,6 +51,7 @@
     <div class="row">
       <button
         class="option-button"
+        [class.selected]="selectedOption === questions[currentQuestionIndex].options[2]"
         (click)="selectOption(questions[currentQuestionIndex].options[2])"
         [disabled]="selectedOption !== ''"
       >
@@ -56,6 +59,7 @@
       </button>
       <button
         class="option-button"
+        [class.selected]="selectedOption === questions[currentQuestionIndex].options[3]"
         (click)="selectOption(questions[currentQuestionIndex].options[3])"
         [disabled]="selectedOption !== ''"
       >
@@ -63,6 +67,7 @@
       </button>
     </div>
   </div>
+  
   <p
     [ngClass]="{ 'response-disabled': showRestartButton }"
     *ngIf="selectedOption !== ''"
