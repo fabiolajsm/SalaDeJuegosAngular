@@ -1,36 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { TriviaQuestion } from '../interfaces/trivia.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TriviaService {
-  constructor() {}
+  private entertainmentUrl =
+    'https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple';
+
+  constructor(private http: HttpClient) {}
 
   getTriviaQuestions(): Observable<TriviaQuestion[]> {
-    // Aquí simularíamos el llamado a la API para obtener las preguntas
-    const mockQuestions: TriviaQuestion[] = [
-      {
-        question: '¿Cuál es la capital de Francia?',
-        image: 'paris.jpg',
-        options: ['Roma', 'Madrid', 'París', 'Berlín'],
-        correctAnswer: 'París',
-      },
-      {
-        question: '¿Quién escribió "Don Quijote de la Mancha"?',
-        image: 'quijote.jpg',
-        options: [
-          'Miguel de Cervantes',
-          'Gabriel García Márquez',
-          'Pablo Neruda',
-          'Federico García Lorca',
-        ],
-        correctAnswer: 'Miguel de Cervantes',
-      },
-      // Agrega más preguntas aquí
-    ];
+    return this.getAllTriviaQuestions().pipe(
+      map((response: any) => {
+        const triviaQuestions: TriviaQuestion[] = [];
+        response.results.forEach((result: any) => {
+          if (!result.category) return;
+          const data: TriviaQuestion = {
+            question: result.question,
+            correctAnswer: result.correct_answer,
+            options: result.incorrect_answers.concat(result.correct_answer),
+            image: result.category
+              ? this.getImageForCategory(result.category)
+              : '../assets/Default.jpeg',
+          };
+          triviaQuestions.push(data);
+        });
+        return triviaQuestions;
+      })
+    );
+  }
 
-    return of(mockQuestions);
+  private getAllTriviaQuestions(): Observable<any> {
+    return this.http.get(this.entertainmentUrl);
+  }
+
+  private getImageForCategory(category: string): string {
+    if (category.includes('Entertainment')) {
+      return '../assets/Entertainment.jpeg';
+    } else if (category.includes('Sports')) {
+      return '../assets/Sports.jpeg';
+    } else if (category.includes('Art')) {
+      return '../assets/Art.jpeg';
+    } else if (category.includes('Music')) {
+      return '../assets/Music.jpeg';
+    } else if (category.includes('Science')) {
+      return '../assets/Science.jpeg';
+    } else {
+      return '../assets/Default.jpeg';
+    }
   }
 }

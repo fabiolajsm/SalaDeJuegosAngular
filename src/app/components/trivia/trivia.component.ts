@@ -19,6 +19,7 @@ export class TriviaComponent {
   selectedOption: string = '';
   showRestartButton: boolean = false;
   isCorrectAnswer: boolean = false;
+  isLoading: boolean = false;
 
   constructor(
     private triviaService: TriviaService,
@@ -27,8 +28,12 @@ export class TriviaComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
+    this.spinner.show();
     this.triviaService.getTriviaQuestions().subscribe((questions) => {
       this.questions = questions;
+      this.isLoading = false;
+      this.spinner.hide();
     });
   }
 

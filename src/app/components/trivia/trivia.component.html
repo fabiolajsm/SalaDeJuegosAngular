@@ -22,14 +22,19 @@
   </p>
 
   <div class="question-container">
-    <h2 class="question">{{ questions[currentQuestionIndex].question }}</h2>
+    <h2 class="question" *ngIf="questions && questions[currentQuestionIndex]">
+      {{ questions[currentQuestionIndex]?.question }}
+    </h2>
+
     <img
-      [src]="'assets/' + questions[currentQuestionIndex].image"
       alt="Question Image"
+      class="question-image"
+      *ngIf="questions[currentQuestionIndex]?.image"
+      [src]="questions[currentQuestionIndex]?.image"
     />
   </div>
 
-  <div class="options-container">
+  <div class="options-container" *ngIf="!isLoading && questions.length > 0">
     <div class="row">
       <button
         class="option-button"
