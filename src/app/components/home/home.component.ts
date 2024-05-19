@@ -57,7 +57,8 @@ export class HomeComponent {
     {
       number: '03',
       title: 'Preguntados',
-      description: 'Una descripcion',
+      description:
+        'Este juego de preguntas y respuestas es una forma divertida y educativa de poner a prueba tus conocimientos. Responde preguntas, acumula puntos y demuestra tu inteligencia.',
       img: '../../../assets/Preguntados.jpeg',
     },
     {

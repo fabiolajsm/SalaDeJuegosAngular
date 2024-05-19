@@ -1,1 +1,79 @@
-<p>trivia works!</p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#f4f47c"
+  type="pacman"
+  [fullScreen]="true"
+>
+  <p style="color: #f4f47c; font-family: Roboto">Cargando</p>
+</ngx-spinner>
+
+<span id="goBack" class="material-symbols-outlined" (click)="goToHome()">
+  arrow_back
+</span>
+
+<div class="container">
+  <h1 id="title">Preguntados</h1>
+  <p class="description">
+    Prepárate para poner a prueba tus conocimientos en este desafío de preguntas
+    y respuestas. Se te presentará una pregunta con cuatro opciones. Selecciona
+    la opción correcta para sumar 1 punto a tu puntuación. ¡Cuidado! Respuestas
+    incorrectas significan perder. ¡Que comience el desafío!
+  </p>
+
+  <div class="question-container">
+    <h2 class="question">{{ questions[currentQuestionIndex].question }}</h2>
+    <img
+      [src]="'assets/' + questions[currentQuestionIndex].image"
+      alt="Question Image"
+    />
+  </div>
+
+  <div class="options-container">
+    <div class="row">
+      <button
+        class="option-button"
+        (click)="selectOption(questions[currentQuestionIndex].options[0])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[0] }}
+      </button>
+      <button
+        class="option-button"
+        (click)="selectOption(questions[currentQuestionIndex].options[1])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[1] }}
+      </button>
+    </div>
+    <div class="row">
+      <button
+        class="option-button"
+        (click)="selectOption(questions[currentQuestionIndex].options[2])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[2] }}
+      </button>
+      <button
+        class="option-button"
+        (click)="selectOption(questions[currentQuestionIndex].options[3])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[3] }}
+      </button>
+    </div>
+  </div>
+  <p
+    [ngClass]="{ 'response-disabled': showRestartButton }"
+    *ngIf="selectedOption !== ''"
+  >
+    Respuesta: {{ isCorrect() ? "Correcta" : "Incorrecta" }}
+  </p>
+
+  <button class="btn" (click)="nextQuestion()" *ngIf="!showRestartButton">
+    Siguiente
+  </button>
+  <button class="btn" (click)="restartGame()" *ngIf="showRestartButton">
+    Volver a jugar
+  </button>
+</div>
