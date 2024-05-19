@@ -33,7 +33,9 @@
     <div class="row">
       <button
         class="option-button"
-        [class.selected]="selectedOption === questions[currentQuestionIndex].options[0]"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[0]
+        "
         (click)="selectOption(questions[currentQuestionIndex].options[0])"
         [disabled]="selectedOption !== ''"
       >
@@ -41,7 +43,9 @@
       </button>
       <button
         class="option-button"
-        [class.selected]="selectedOption === questions[currentQuestionIndex].options[1]"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[1]
+        "
         (click)="selectOption(questions[currentQuestionIndex].options[1])"
         [disabled]="selectedOption !== ''"
       >
@@ -51,7 +55,9 @@
     <div class="row">
       <button
         class="option-button"
-        [class.selected]="selectedOption === questions[currentQuestionIndex].options[2]"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[2]
+        "
         (click)="selectOption(questions[currentQuestionIndex].options[2])"
         [disabled]="selectedOption !== ''"
       >
@@ -59,7 +65,9 @@
       </button>
       <button
         class="option-button"
-        [class.selected]="selectedOption === questions[currentQuestionIndex].options[3]"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[3]
+        "
         (click)="selectOption(questions[currentQuestionIndex].options[3])"
         [disabled]="selectedOption !== ''"
       >
@@ -67,15 +75,21 @@
       </button>
     </div>
   </div>
-  
+
   <p
     [ngClass]="{ 'response-disabled': showRestartButton }"
     *ngIf="selectedOption !== ''"
   >
-    Respuesta: {{ isCorrect() ? "Correcta" : "Incorrecta" }}
+    Respuesta: {{ isCorrectAnswer ? "Correcta" : "Incorrecta" }}
   </p>
+  <p>Puntaje: {{ score }}</p>
 
-  <button class="btn" (click)="nextQuestion()" *ngIf="!showRestartButton">
+  <button
+    class="btn"
+    (click)="nextQuestion()"
+    [disabled]="selectedOption === ''"
+    *ngIf="!showRestartButton"
+  >
     Siguiente
   </button>
   <button class="btn" (click)="restartGame()" *ngIf="showRestartButton">

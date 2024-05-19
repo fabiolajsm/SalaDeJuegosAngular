@@ -17,7 +17,8 @@ export class TriviaComponent {
   questions: TriviaQuestion[] = [];
   currentQuestionIndex = 0;
   selectedOption: string = '';
-  showRestartButton: boolean = false; // Variable para controlar la visibilidad del botón
+  showRestartButton: boolean = false;
+  isCorrectAnswer: boolean = false;
 
   constructor(
     private triviaService: TriviaService,
@@ -32,28 +33,33 @@ export class TriviaComponent {
   }
 
   nextQuestion() {
-    console.log(this.currentQuestionIndex, "currentQuestionIndex");
-    console.log(this.questions, "questions");
-    
-    
+    if (this.selectedOption === '') return;
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
       this.selectedOption = '';
     } else if (this.currentQuestionIndex === this.questions.length - 1) {
-      console.log('Se han agotado todas las preguntas.');
-      this.showRestartButton = true; // Mostrar el botón de reiniciar
+      this.showRestartButton = true;
     }
   }
 
   selectOption(option: string) {
     this.selectedOption = option;
+    this.isCorrect();
   }
 
   isCorrect(): boolean {
-    return (
+    const isCorrect =
       this.selectedOption ===
-      this.questions[this.currentQuestionIndex].correctAnswer
-    );
+      this.questions[this.currentQuestionIndex].correctAnswer;
+
+    if (isCorrect) {
+      this.score++;
+      this.isCorrectAnswer = true;
+      return true;
+    } else {
+      this.isCorrectAnswer = false;
+      return false;
+    }
   }
 
   goToHome(): void {
@@ -64,6 +70,6 @@ export class TriviaComponent {
     this.currentQuestionIndex = 0;
     this.score = 0;
     this.selectedOption = '';
-    this.showRestartButton = false; // Ocultar el botón de reiniciar nuevamente
+    this.showRestartButton = false;
   }
 }
