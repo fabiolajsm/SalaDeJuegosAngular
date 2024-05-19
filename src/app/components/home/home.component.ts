@@ -50,7 +50,8 @@ export class HomeComponent {
     {
       number: '02',
       title: 'Mayor o Menor',
-      description: 'Una descripcion',
+      description:
+        '¡Atrévete a desafiar tus habilidades de predicción y disfruta de la emoción del juego Mayor o Menor!',
       img: '../../../assets/MayorMenor.jpeg',
     },
     {

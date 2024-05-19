@@ -1,1 +1,57 @@
-<p>greater-or-less works!</p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#f4f47c"
+  type="pacman"
+  [fullScreen]="true"
+  ><p style="color: #f4f47c; font-family: Roboto">Cargando</p>
+</ngx-spinner>
+
+<span id="goBack" class="material-symbols-outlined" (click)="goToHome()">
+  arrow_back
+</span>
+
+<div class="container">
+  <h1 id="title">Mayor, Menor o Igual</h1>
+  <p class="description">
+    En este juego, los jugadores tendrán que predecir si la siguiente carta del
+    mazo será de un valor mayor, menor o igual que la carta actual. Cada vez que
+    aciertan, suman un punto a su marcador. La clave está en tomar decisiones
+    rápidas y estratégicas para acumular la mayor cantidad de puntos posible.
+  </p>
+
+  <p class="score">Puntaje: {{ score }}</p>
+  <p
+    class="resultMessage"
+    [ngClass]="{
+      lost: resultMessage === 'Perdiste!',
+      won: resultMessage !== 'Perdiste!'
+    }"
+  >
+    {{ resultMessage }}
+  </p>
+  <div class="rowContainer">
+    <img
+      alt="Imagen carta"
+      src="{{ lastCard.imagen }}"
+      width="200"
+      height="250"
+      alt=""
+    />
+
+    <img
+      *ngIf="hasNewCard"
+      alt="Imagen nueva carta"
+      src="{{ newCard.imagen }}"
+      width="200"
+      height="250"
+      alt=""
+    />
+  </div>
+
+  <div class="rowContainer">
+    <button (click)="getNewCard('mayor')">Mayor</button>
+    <button (click)="getNewCard('igual')">Igual</button>
+    <button (click)="getNewCard('menor')">Menor</button>
+  </div>
+</div>

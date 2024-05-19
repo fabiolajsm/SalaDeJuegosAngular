@@ -7,6 +7,10 @@
   ><p style="color: #f4f47c; font-family: Roboto">Cargando</p>
 </ngx-spinner>
 
+<span id="goBack" class="material-symbols-outlined" (click)="goToHome()">
+  arrow_back
+</span>
+
 <div class="hangman">
   <h1 class="title">Adivina la palabra!</h1>
   <p class="description">
@@ -38,5 +42,3 @@
   <p>Texto correcto: {{ question }}</p>
   <button class="btn" (click)="reset()">Volver a jugar</button>
 </ng-template>
-
-<button class="btnGoBack" (click)="goToHome()">Volver al home</button>

@@ -3,3 +3,11 @@
 body {
   background-color: black;
 }
+
+#goBack {
+  cursor: pointer;
+  color: #f4f47c;
+}
+#goBack:hover {
+  color: white;
+}
