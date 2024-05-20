@@ -65,7 +65,7 @@ export class HomeComponent {
       number: '04',
       title: 'Elementos',
       description:
-        '¡Un juego perfecto para los pequeños de la casa! Aprende matemática usando tus personajes favoritos de Elementos.',
+        '¡Pon a prueba tus habilidades matemáticas junto a tus personajes favoritos de Elementos! ¡Demuestra cuántas preguntas puedes responder correctamente!',
       img: '../../../assets/Elementos.jpeg',
     },
   ];
