@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MathExercise, mathExercises } from './mathExercises';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +8,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-elements',
   standalone: true,
-  imports: [CommonModule, NgxSpinnerModule, MatCardModule, ReactiveFormsModule],
+  imports: [CommonModule, MatCardModule, ReactiveFormsModule],
   templateUrl: './elements.component.html',
   styleUrl: './elements.component.scss',
 })
@@ -25,7 +24,7 @@ export class ElementsComponent {
   userAnswer: string = '';
   feedbackImageUrl: string = '';
 
-  constructor(private router: Router, private spinner: NgxSpinnerService) {}
+  constructor(private router: Router) {}
 
   getImageUrl(element: string): string {
     return `../assets/${element}.jpeg`;
