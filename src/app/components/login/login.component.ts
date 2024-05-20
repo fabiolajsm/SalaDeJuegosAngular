@@ -64,13 +64,10 @@ export class LoginComponent {
     ];
     const emailSelected =
       quickAccessUsers[Math.floor(Math.random() * quickAccessUsers.length)];
-    this.getQuickAccessUsers(emailSelected);
-  }
 
-  getQuickAccessUsers(email: string) {
     this.authService.getUsers().subscribe((userData) => {
       userData.forEach((usuario) => {
-        if ((usuario as any).email == email) {
+        if ((usuario as any).email == emailSelected) {
           this.form.controls['email'].setValue((usuario as any).email);
           this.form.controls['password'].setValue((usuario as any).password);
           this.spinner.hide();
