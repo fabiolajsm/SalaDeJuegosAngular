@@ -1,0 +1,13 @@
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body {
+  background-color: black;
+}
+
+#goBack {
+  cursor: pointer;
+  color: #f4f47c;
+}
+#goBack:hover {
+  color: white;
+}

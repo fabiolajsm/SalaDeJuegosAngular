@@ -1,0 +1,138 @@
+.chatContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+button {
+  background-color: black;
+}
+
+#logoutBtn {
+  color: #f4f47c;
+  margin-top: auto;
+  margin-left: auto;
+  display: block;
+  cursor: pointer;
+}
+#logoutBtn:hover {
+  color: white;
+}
+
+#chatContainer {
+  margin-left: auto;
+}
+
+#title {
+  text-align: center;
+  font-family: "Unbounded", sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer p,
+.footer a {
+  margin: 0;
+  color: white;
+}
+
+.footer a {
+  margin-left: 0.5rem;
+}
+
+.footer a:hover {
+  color: #f4f47c;
+}
+
+.games-list {
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.game-image {
+  max-width: 300px;
+  height: auto;
+}
+
+.game-item {
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
+.game-item:hover {
+  border: none;
+  border-radius: 20px;
+  background-color: #f4f47c;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+  p {
+    color: black;
+  }
+}
+
+.info-container {
+  flex: 1;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  /* text */
+  color: #f4f47c;
+  font-weight: 500;
+  font-family: "Unbounded", sans-serif;
+}
+
+.infoNumber {
+  font-size: 1rem;
+}
+
+.infoTitle {
+  font-size: 1.5rem;
+}
+
+.infoDescription {
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Roboto";
+}
+
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 576px) {
+  .games-list {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .game-item {
+    flex-direction: column;
+  }
+
+  .info-container {
+    padding-right: 0;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer p,
+  .footer a {
+    margin: 0.5rem 0;
+  }
+}

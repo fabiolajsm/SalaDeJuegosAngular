@@ -11,26 +11,61 @@ export const routes: Routes = [
   {
     path: 'onboarding',
     component: OnboardingComponent,
-    title: 'Onboarding page',
+    title: 'Onboarding',
   },
   {
     path: 'register',
     component: RegisterComponent,
-    title: 'Register page',
+    title: 'Registro',
   },
   {
     path: 'login',
     component: LoginComponent,
-    title: 'Login Page',
+    title: 'Login',
   },
   {
     path: 'home',
     component: HomeComponent,
-    title: 'Home Page',
+    title: 'Sala de juegos',
   },
   {
     path: 'aboutMe',
-    component: AboutMeComponent,
-    title: 'About me',
+    loadComponent: () =>
+      import('./components/about-me/about-me.component').then(
+        (c) => c.AboutMeComponent
+      ),
+    title: 'Acerca de mi',
+  },
+  {
+    path: 'hangman',
+    loadComponent: () =>
+      import('./components/hangman/hangman.component').then(
+        (c) => c.HangmanComponent
+      ),
+    title: 'Ahorcado',
+  },
+  {
+    path: 'greater-or-less',
+    loadComponent: () =>
+      import('./components/greater-or-less/greater-or-less.component').then(
+        (c) => c.GreaterOrLessComponent
+      ),
+    title: 'Mayor o Menor',
+  },
+  {
+    path: 'trivia',
+    loadComponent: () =>
+      import('./components/trivia/trivia.component').then(
+        (c) => c.TriviaComponent
+      ),
+    title: 'Preguntados',
+  },
+  {
+    path: 'elements',
+    loadComponent: () =>
+      import('./components/elements/elements.component').then(
+        (c) => c.ElementsComponent
+      ),
+    title: 'Elementos',
   },
 ];

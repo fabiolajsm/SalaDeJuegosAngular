@@ -1,6 +1,37 @@
-<h1>Home page en construcción...</h1>
+<mat-icon id="logoutBtn" (click)="handleLogout()" name="logout">
+  <span class="material-symbols-outlined"> logout </span>
+</mat-icon>
 
-<footer class="centered-content">
+<h1 id="title">{{ title }}</h1>
+
+<ul class="games-list">
+  <ng-container *ngFor="let item of gamesList; let i = index">
+    <li class="game-item" (click)="onGameClick(item)">
+      <div class="info-container">
+        <p class="infoNumber">{{ item.number }}</p>
+        <p class="infoTitle">{{ item.title }}</p>
+        <p class="infoDescription">{{ item.description }}</p>
+      </div>
+      <img src="{{ item.img }}" alt="Foto de perfil" class="game-image" />
+    </li>
+  </ng-container>
+</ul>
+
+<footer class="footer">
   <p>Página creada por</p>
   <a routerLink="/aboutMe">Fabiola Suárez</a>
 </footer>
+
+<div class="chatContainer">
+  <button
+    mat-fab
+    matTooltip="Primary"
+    color="primary"
+    (click)="openBottomSheet()"
+    class="chatBtn"
+  >
+    <mat-icon id="chatBtn" name="chatBtn">
+      <span class="material-symbols-outlined"> comment </span>
+    </mat-icon>
+  </button>
+</div>

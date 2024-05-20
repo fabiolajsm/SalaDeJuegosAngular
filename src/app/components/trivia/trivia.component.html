@@ -1,0 +1,107 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#f4f47c"
+  type="pacman"
+  [fullScreen]="true"
+>
+  <p style="color: #f4f47c; font-family: Roboto">Cargando</p>
+</ngx-spinner>
+
+<span id="goBack" class="material-symbols-outlined" (click)="goToHome()">
+  arrow_back
+</span>
+
+<div class="container" *ngIf="!isLoading">
+  <h1 id="title">Preguntados</h1>
+  <p class="description">
+    Prepárate para poner a prueba tus conocimientos en este desafío de preguntas
+    y respuestas. Se te presentará una pregunta con cuatro opciones. Selecciona
+    la opción correcta para sumar 1 punto a tu puntuación. ¡Cuidado! Respuestas
+    incorrectas significan perder. ¡Que comience el desafío!
+  </p>
+  <div class="question-container">
+    <h2 class="question" *ngIf="questions[currentQuestionIndex]?.question">
+      {{ questions[currentQuestionIndex].question }}
+    </h2>
+
+    <img
+      alt="Question Image"
+      class="question-image"
+      *ngIf="questions[currentQuestionIndex]?.image"
+      [src]="questions[currentQuestionIndex].image"
+    />
+  </div>
+
+  <div class="options-container" *ngIf="!isLoading && questions.length > 0">
+    <div class="row">
+      <button
+        class="option-button"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[0]
+        "
+        (click)="selectOption(questions[currentQuestionIndex].options[0])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[0] }}
+      </button>
+      <button
+        class="option-button"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[1]
+        "
+        (click)="selectOption(questions[currentQuestionIndex].options[1])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[1] }}
+      </button>
+    </div>
+    <div class="row">
+      <button
+        class="option-button"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[2]
+        "
+        (click)="selectOption(questions[currentQuestionIndex].options[2])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[2] }}
+      </button>
+      <button
+        class="option-button"
+        [class.selected]="
+          selectedOption === questions[currentQuestionIndex].options[3]
+        "
+        (click)="selectOption(questions[currentQuestionIndex].options[3])"
+        [disabled]="selectedOption !== ''"
+      >
+        {{ questions[currentQuestionIndex].options[3] }}
+      </button>
+    </div>
+  </div>
+
+  <p
+    [ngClass]="{ 'response-disabled': showRestartButton }"
+    *ngIf="selectedOption !== ''"
+  >
+    {{
+      isCorrectAnswer
+        ? "Respuesta correcta!"
+        : "Respuesta incorrecta. Era: " +
+          questions[currentQuestionIndex].correctAnswer
+    }}
+  </p>
+  <p>Puntaje: {{ score }}</p>
+
+  <button
+    class="btn"
+    (click)="nextQuestion()"
+    [disabled]="selectedOption === ''"
+    *ngIf="!showRestartButton"
+  >
+    Siguiente
+  </button>
+  <button class="btn" (click)="restartGame()" *ngIf="showRestartButton">
+    Volver a jugar
+  </button>
+</div>
