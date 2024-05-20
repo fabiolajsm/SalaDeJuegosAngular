@@ -1,1 +1,81 @@
-<p>elements works!</p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#f4f47c"
+  type="pacman"
+  [fullScreen]="true"
+>
+  <p style="color: #f4f47c; font-family: Roboto">Cargando</p>
+</ngx-spinner>
+
+<span
+  id="goBack"
+  class="material-symbols-outlined"
+  (click)="showSelector ? goToHome() : backFromTheGame()"
+>
+  arrow_back
+</span>
+
+<div class="container" *ngIf="showSelector">
+  <h1 id="title">Elementos</h1>
+  <p class="description">
+    Vamos a acompañar a los grandiosos personajes de Elementos en una
+    emocionante aventura donde resolverán problemas matemáticos juntos. Desde
+    sumas y restas hasta multiplicaciones y divisiones, cada nivel personaje se
+    va a enfrentar diferentes desafíos matemáticos. ¿Estás listo/a para empezar?
+  </p>
+  <h2 class="subtitle">Elige a qué personaje acompañarás</h2>
+  <div class="card-container">
+    <button
+      class="card"
+      *ngFor="let element of elements"
+      (click)="selectElement(element)"
+    >
+      <mat-card>
+        <img
+          mat-card-image
+          [src]="getImageUrl(element)"
+          [alt]="'Photo of ' + element"
+        />
+        <mat-card-content>
+          <p>{{ getDescription(element) }}</p>
+        </mat-card-content>
+      </mat-card>
+    </button>
+  </div>
+</div>
+
+<div class="container" *ngIf="!showSelector && !feedbackImageUrl">
+  <h2 class="subtitle">
+    ¡Ayudemos a {{ selectedElement.toUpperCase() }} a determinar cuántas
+    afirmaciones son correctas!
+  </h2>
+  <ng-container *ngFor="let exercise of exercises; let i = index">
+    <h3>{{ i + 1 }}. {{ exercise.question }}</h3>
+  </ng-container>
+  <label class="userAnswer" for="userAnswer"
+    >Ingrese el número de respuestas correctas:</label
+  >
+  <form [formGroup]="form" (ngSubmit)="submitAnswer()">
+    <input
+      autocomplete="off"
+      type="number"
+      id="userAnswer"
+      formControlName="userAnswer"
+    />
+    <button type="submit" [disabled]="!selectedElement">
+      Comprobar respuestas
+    </button>
+  </form>
+</div>
+<div class="feedback-container" *ngIf="feedbackImageUrl && !showSelector">
+  <p>
+    {{
+      feedbackImageUrl.includes("happy")
+        ? "¡Felicidades! Respondiste bien la pregunta."
+        : "¡Oh no! No fue correcta la respuesta."
+    }}
+  </p>
+  <img [src]="feedbackImageUrl" alt="Feedback Image" />
+  <button id="tryAgain" (click)="tryAgain()">Volver a intentar</button>
+</div>

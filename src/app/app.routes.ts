@@ -11,22 +11,22 @@ export const routes: Routes = [
   {
     path: 'onboarding',
     component: OnboardingComponent,
-    title: 'Onboarding page',
+    title: 'Onboarding',
   },
   {
     path: 'register',
     component: RegisterComponent,
-    title: 'Register page',
+    title: 'Registro',
   },
   {
     path: 'login',
     component: LoginComponent,
-    title: 'Login Page',
+    title: 'Login',
   },
   {
     path: 'home',
     component: HomeComponent,
-    title: 'Home Page',
+    title: 'Sala de juegos',
   },
   {
     path: 'aboutMe',
@@ -34,7 +34,7 @@ export const routes: Routes = [
       import('./components/about-me/about-me.component').then(
         (c) => c.AboutMeComponent
       ),
-    title: 'About me',
+    title: 'Acerca de mi',
   },
   {
     path: 'hangman',

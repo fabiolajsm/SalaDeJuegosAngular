@@ -64,7 +64,8 @@ export class HomeComponent {
     {
       number: '04',
       title: 'Elementos',
-      description: 'Una descripcion',
+      description:
+        '¡Un juego perfecto para los pequeños de la casa! Aprende matemática usando tus personajes favoritos de Elementos.',
       img: '../../../assets/Elementos.jpeg',
     },
   ];
