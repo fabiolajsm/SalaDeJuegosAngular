@@ -85,7 +85,12 @@
     [ngClass]="{ 'response-disabled': showRestartButton }"
     *ngIf="selectedOption !== ''"
   >
-    Respuesta: {{ isCorrectAnswer ? "Correcta" : "Incorrecta" }}
+    {{
+      isCorrectAnswer
+        ? "Respuesta correcta!"
+        : "Respuesta incorrecta. Era: " +
+          questions[currentQuestionIndex].correctAnswer
+    }}
   </p>
   <p>Puntaje: {{ score }}</p>
 
