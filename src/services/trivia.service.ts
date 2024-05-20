@@ -13,7 +13,7 @@ export class TriviaService {
   constructor(private http: HttpClient) {}
 
   getTriviaQuestions(): Observable<TriviaQuestion[]> {
-    return this.getAllTriviaQuestions().pipe(
+    return this.http.get(this.entertainmentUrl).pipe(
       map((response: any) => {
         const triviaQuestions: TriviaQuestion[] = [];
         response.results.forEach((result: any) => {
@@ -33,10 +33,6 @@ export class TriviaService {
         return triviaQuestions;
       })
     );
-  }
-
-  private getAllTriviaQuestions(): Observable<any> {
-    return this.http.get(this.entertainmentUrl);
   }
 
   private getImageForCategory(category: string): string {
