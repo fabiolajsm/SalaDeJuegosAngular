@@ -15,17 +15,24 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    loadComponent: () =>
+      import('./components/register/register.component').then(
+        (c) => c.RegisterComponent
+      ),
     title: 'Registro',
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadComponent: () =>
+      import('./components/login/login.component').then(
+        (c) => c.LoginComponent
+      ),
     title: 'Login',
   },
   {
     path: 'home',
-    component: HomeComponent,
+    loadComponent: () =>
+      import('./components/home/home.component').then((c) => c.HomeComponent),
     title: 'Sala de juegos',
   },
   {
