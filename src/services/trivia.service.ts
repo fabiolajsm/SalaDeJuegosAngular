@@ -19,9 +19,11 @@ export class TriviaService {
         response.results.forEach((result: any) => {
           if (!result.category) return;
           const data: TriviaQuestion = {
-            question: result.question,
-            correctAnswer: result.correct_answer,
-            options: result.incorrect_answers.concat(result.correct_answer),
+            question: this.decodeHTMLEntities(result.question),
+            correctAnswer: this.decodeHTMLEntities(result.correct_answer),
+            options: result.incorrect_answers
+              .map((answer: string) => this.decodeHTMLEntities(answer))
+              .concat(result.correct_answer),
             image: result.category
               ? this.getImageForCategory(result.category)
               : '../assets/Default.jpeg',
@@ -51,5 +53,11 @@ export class TriviaService {
     } else {
       return '../assets/Default.jpeg';
     }
+  }
+
+  private decodeHTMLEntities(text: string): string {
+    const elem = document.createElement('textarea');
+    elem.innerHTML = text;
+    return elem.value;
   }
 }
