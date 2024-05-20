@@ -28,6 +28,10 @@ export class TriviaComponent {
   ) {}
 
   ngOnInit(): void {
+    this.loadTriviaQuestions();
+  }
+
+  loadTriviaQuestions(): void {
     this.isLoading = true;
     this.spinner.show();
     this.triviaService.getTriviaQuestions().subscribe((questions) => {
@@ -72,6 +76,7 @@ export class TriviaComponent {
   }
 
   restartGame() {
+    this.loadTriviaQuestions();
     this.currentQuestionIndex = 0;
     this.score = 0;
     this.selectedOption = '';

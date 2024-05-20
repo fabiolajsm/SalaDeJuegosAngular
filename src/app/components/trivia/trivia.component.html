@@ -20,17 +20,16 @@
     la opción correcta para sumar 1 punto a tu puntuación. ¡Cuidado! Respuestas
     incorrectas significan perder. ¡Que comience el desafío!
   </p>
-
   <div class="question-container">
-    <h2 class="question" *ngIf="questions && questions[currentQuestionIndex]">
-      {{ questions[currentQuestionIndex]?.question }}
+    <h2 class="question" *ngIf="questions[currentQuestionIndex]?.question">
+      {{ questions[currentQuestionIndex].question }}
     </h2>
 
     <img
       alt="Question Image"
       class="question-image"
       *ngIf="questions[currentQuestionIndex]?.image"
-      [src]="questions[currentQuestionIndex]?.image"
+      [src]="questions[currentQuestionIndex].image"
     />
   </div>
 
